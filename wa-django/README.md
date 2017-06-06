@@ -1,3 +1,9 @@
+
+Changes made mostly in importer.py,directory.html,map.html,left_aside.html, views.py,url.py.. Added sentimental_analysis.html, first_nation.html, map2.html.
+In importer.py there is an addition to import the data for stating type and description of outlet , articles urls, and uncommenting outlet data import.
+
+
+# These are the packages to download before running the system.
 # Installing wa-django on Ubuntu 16.04 LTS
 
 ## Install Python packages

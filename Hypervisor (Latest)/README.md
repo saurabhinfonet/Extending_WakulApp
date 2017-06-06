@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This module is for creating VM and running harvester software in new VM automatically and also for terminating VMs.
 
 Steps to create VM , download necessary packages and run harvester program :
@@ -18,3 +19,14 @@ Steps to terminate VM on fcfs mode :
 
    ```bash
    python3 terminate_vm.py
+=======
+This module is for creating VM and running harvester software in new VM automatically.
+
+Steps to run the code:
+
+1.Insert configuration details into files/configure.yaml
+
+2.Run create_vm.py
+
+    python3 create_vm.py
+>>>>>>> bf386ff35afe3e7489dc5ac43d27ca72b02de538
