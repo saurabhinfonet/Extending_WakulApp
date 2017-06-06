@@ -1,0 +1,6 @@
+couchdb:
+  https: no
+  ip_address: 115.146.91.111
+  port: "15984"
+  login: wadmin2
+  password: 3DwyATMD

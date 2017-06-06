@@ -1,0 +1,165 @@
+<!-- Author : Elyas -->
+<!-- Contribution : Saurabh Sharma -->
+<!-- There are 2 methods available for this task ; Please check map2.html in the same folder-->
+<!-- This add up the feature for Interactive map in tasks -->
+
+
+{{% load static %}
+<html>
+<head>
+    <title>Wakul</title>
+    {% include "news/head.html" %}
+
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <script>
+    var map, marker, waypointByID = {};
+    var active;
+
+    function initialize() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: new google.maps.LatLng(-25.363, 131.044),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        {% for outlet in outlets %}
+        {% if outlet.geometry.x  %}
+
+        var marker = new google.maps.Marker({
+          position: {
+            lat: {{ outlet.geometry.y }},
+            lng: {{ outlet.geometry.x }}
+          },
+          map: map,
+          title: "{{ outlet.name }}"
+        });
+        marker.addListener('click', function() {
+          if (active != null) {
+            document.getElementById(active).className = "outlet inactive";
+          }
+          document.getElementById("{{ outlet.outlet }}").className = "outlet active";
+          active = "{{ outlet.outlet }}";
+        });
+        waypointByID["{{ outlet.outlet }}"] = {
+            name: "{{ outlet.name }}",
+            lat: {{ outlet.geometry.y }},
+            lng: {{ outlet.geometry.x }}
+        };
+        {% endif %}
+        {% endfor %}
+    }
+
+    $(document).ready(function () {
+        function activateWaypoints() {
+            // Add waypoint click handler
+            $('.outlet').each(function () {
+                $(this).click(function() {
+                    var waypoint = waypointByID[this.id];
+                    var center = new google.maps.LatLng(waypoint.lat, waypoint.lng);
+                    if (marker) marker.setMap();
+                    marker = new google.maps.Marker({map: map, position: center});
+                    map.panTo(center);
+                    if (active != null) {
+                      document.getElementById(active).className = "outlet inactive";
+                    }
+                    this.className = "outlet active";
+                    active = this.id
+                }).hover(
+                );
+            });
+        }
+        activateWaypoints();
+    });
+    </script>
+</head>
+<body class="{{ body_tags }}" onload='initialize()'>
+
+{% include "news/navigation.html" %}
+
+
+
+
+
+    <main>
+        <div class="responsive">
+            {% include "news/left_aside.html" %}
+
+
+
+<!-- 1st Method of interactive maps -->
+<!-- Checks if the click is radio than iterates the stations which has geoson code and plots it in map -->
+            <div class="articles-container">
+                {% if map_view == 'radio' %}
+                    <h2>{{ map_view }}</h2>
+                    <div id="map"></div>
+                    {% for radio in outlets %}
+                        {% if radio.geometry.x  %}
+                    <div id="{{ radio.id  }}" class="outlet inactive">
+                        <div class="outlet-name">{{ radio.name }}</div>
+                        {% if radio.website != '' %}
+                        <div class="outlet-stream">
+                            <a href="{{ radio.website }}">Live Stream</a>
+
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+
+
+
+<!-- Iterates through all the geocoded tweets and plot it to map   -->
+            <div class="articles-container">
+                {% if map_view == 'tweet' %}
+                    <h2>{{ map_view }}</h2>
+                    <div id="map"></div>
+                    {% for tweet in outlets %}
+                        {% if tweet.geometry.x  %}
+                    <div id="{{ tweet.id  }}" class="outlet inactive">
+                        <div class="outlet-name">{{ tweet.name }}</div>
+                        {% if tweet.website != '' %}
+                        <div class="outlet-stream">
+                            <a href="{{ tweet.website }}">Live Stream</a>
+
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+
+<!-- Iterates all the geocoded articles and plot it to the map -->
+            <div class="articles-container" >
+                <h2>{{ map_view }}</h2>
+                <div id="map"></div>
+                {% for tweet in outlets %}
+                    {% if tweet.geometry.x  %}
+                <div id="{{ tweet.id  }}" class="outlet inactive">
+                    <div class="outlet-name">{{ tweet.name }}</div>
+                    {% if tweet.website != '' %}
+                    <div class="outlet-stream">
+                        <a href="{{ tweet.website }}">Live Stream</a>
+
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            {% include "news/right_aside.html" %}
+      </div>
+    </main>
+
+</body>
+</html>
+
+
+
+
+

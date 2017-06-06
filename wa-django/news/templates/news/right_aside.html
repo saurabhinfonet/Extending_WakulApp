@@ -1,0 +1,27 @@
+            <aside class="right-aside border-box">
+                <div class="aside-section">
+                    <h2>Twitter Trending Topics</h2>
+                    <ul>
+                    {% for tweet_topic in tweet_topics %}
+                        <li><a href="{% url 'twitter_topic' topic=tweet_topic.name %}" class="border-box{% if topic == tweet_topic.name %} current-page{% endif %}" id="">{{ tweet_topic.name }}<span>{{ tweet_topic.count }}</span></a></li>
+                    {% endfor %}
+                    </ul>
+                    <p>(last 28 days)</p>
+                </div>
+                <div class="aside-section">
+                    <h2 class="{% if topic == '' %}current-page{% endif %}" id="latest-tweets">Latest tweets</h2>
+                    {% for entry in latest_tweets %}
+                    <div class="tweet">
+                        <a href="{{ entry.url_user }}" class="user_img fade"><img src="{{ entry.user_img }}"></a>
+                        <div class="wrapper">
+                            <div class="user">
+                                <a href="{{ entry.url_user }}" class="user_name">{{ entry.user_name }}</a> <a href="{{ entry.url_user }}" class="screen_name">@{{ entry.screen_name }}</a>
+                            </div>
+                            <div class="text">
+                                <a href="{{ entry.url }}">{{ entry.text }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </aside>

@@ -1,0 +1,94 @@
+<!-- Author : Elyas -->
+<!-- Contribution : Saurabh Sharma -->
+
+
+            <aside class="left-aside border-box">
+                <div class="aside-section">
+                    <h2>News feed</h2>
+                    <ul>
+                        <li><a href="{% url 'front_page' %}" class="border-box{% if category == 'latest' %} current-page{% endif %}">Latest</a></li>
+                        <li><a href="{% url 'news_feed' category='trending' %}" class="border-box{% if category == 'trending' %} current-page{% endif %}">Trending</a></li>
+                    </ul>
+                </div>
+                <div class="aside-section">
+                    <h2>100% Indigenous-produced</h2>
+                    <ul>
+                        <li><a href="{% url 'news_feed' category='indigenous' %}" class="border-box{% if category == 'indigenous' %} current-page{% endif %}">Latest</a></li>
+                        <li><a href="{% url 'news_feed' category='indigenous-trending' %}" class="border-box{% if category == 'indigenous-trending' %} current-page{% endif %}">Trending</a></li>
+                    </ul>
+                </div>
+
+
+
+
+<!-- Added the Articles , Tweets , First Nations under Interactive Maps -->
+                <div class="aside-section">
+                    <h2>Interactive Map</h2>
+                    <ul>
+                        <li><a href="{% url 'map' map_view='radio' %}" class="border-box{% ifequal map_view 'radio' %} current-page{% endifequal %}" id="">Radio</a></li>
+                        <li><a href="{% url 'map' map_view='tweet' %}" class="border-box{% ifequal map_view 'tweet' %} current-page{% endifequal %}" id="">Tweets</a></li>
+                        <li><a href="{% url 'map' map_view='Article' %}" class="border-box{% ifequal map_view 'Article' %} current-page{% endifequal %}" id="">Articles</a></li>
+                        <li><a href="{% url 'firstnation'  %}" class="border-box " id="">First Nations</a></li>
+                    </ul>
+
+
+
+
+<!-- Added sentiments of twitter trending topics under Sentimental Analysis -->
+                 <div class="aside-section">
+                    <h2>Sentimental Analysis</h2>
+                    <ul>
+                        <li><a href="{% url 'sentiment' %}" class="border-box " id="">Sentiments</a></li>
+                    </ul>
+                </div>
+
+
+
+                <div class="aside-section">
+                    <h2>Outlets</h2>
+                    <div class="outlet-search">
+                        <form action="/news/search/" method="get" accept-charset="UTF-8">
+                            <select name="o">
+                                {% for outlet in article_outlets %}
+                                    {% ifequal outlet.id o %}
+                                        <option value="{{outlet.id}}" selected="selected">{{ outlet.name }}</option>
+                                    {% else %}
+                                        <option value="{{outlet.id}}">{{ outlet.name }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </select>
+                            <input type="submit" value="" class="submit fade">
+                        </form>
+                    </div>
+                </div>
+                <div class="aside-section">
+                    <h2>Search</h2>
+                    <div class="article-search" role="search">
+                      <form action="/news/search/" method="get" accept-charset="UTF-8">
+                        <input type="search" name="q" size="15" maxlength="128" title="Search..." class="keys">
+                        <input type="submit" value="" class="submit fade">
+                      </form>
+                    </div>
+                </div>
+                {% if category is not None %}<div class="aside-section">
+                    <h2>RSS</h2>
+                    <a href="{% url 'rss' slug='rss' category=category %}{% ifnotequal request.META.QUERY_STRING '' %}?{{ request.META.QUERY_STRING }}{% endifnotequal %}" class="rss">
+                        {% load static %}
+                        <img src="{% static 'news/rss.svg' %}" class="fade">
+                    </a>
+                </div>{% endif %}
+                <div class="aside-section hidden">
+                    <h2>Categories (to-do)</h2>
+                    <ul>
+                        <li><a href="/" class="border-box{% if category == 'activism' %} current-page{% endif %}" id="">Activism</a></li>
+                        <li><a href="/" class="border-box{% if category == 'arts' %} current-page{% endif %}" id="">Arts</a></li>
+                        <li><a href="/" class="border-box{% if category == 'community' %} current-page{% endif %}" id="">Community</a></li>
+                        <li><a href="/" class="border-box{% if category == 'education' %} current-page{% endif %}" id="">Education</a></li>
+                        <li><a href="/" class="border-box{% if category == 'fashion' %} current-page{% endif %}" id="">Fashion</a></li>
+                        <li><a href="/" class="border-box{% if category == 'health' %} current-page{% endif %}" id="">Health</a></li>
+                        <li><a href="/" class="border-box{% if category == 'music' %} current-page{% endif %}" id="">Music</a></li>
+                        <li><a href="/" class="border-box{% if category == 'politics' %} current-page{% endif %}" id="">Politics</a></li>
+                        <li><a href="/" class="border-box{% if category == 'sport' %} current-page{% endif %}" id="">Sport</a></li>
+                    </ul>
+                </div>
+            </aside>

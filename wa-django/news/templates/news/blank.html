@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Wakul</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% load static %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'news/wakul.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'news/layout.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/colors.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/misc.css' %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static 'news/print.css' %}" />
+
+</head>
+<body class="{{ body_tags }}">
+
+{% include "news/navigation.html" %}
+
+</body>
+</html>

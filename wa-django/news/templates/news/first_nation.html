@@ -1,0 +1,71 @@
+<!-- Author - Saurabh Sharma -->
+<!-- This contributes with First Nations feature -->
+<html>
+
+{% load static %}
+
+
+
+<head>
+	
+    <title>Wakul</title>
+    {% include "news/head.html" %}
+    {% load staticfiles %}	
+</head>
+
+
+
+
+
+<!-- Heading and description for AIATSIS map -->
+  <body>
+	{% include "news/navigation.html" %}
+       <main>
+        <div class="responsive">
+            {% include "news/left_aside.html" %}
+			<div class="articles-container">
+	        <div class="section clearfix" id="description">
+	        <div style="font-size: 18px;">
+	        <div class="fluid">
+	        		<h1 align="center" >The AIATSIS map of Aboriginal Australia</h1>
+	        		<h1 style="colour: orangered: font-size:16px">
+	        		<div class="col-1 border-box">
+	        		<div style="font-size: 12px;">
+	        			<p style="color: #ff8000;">The Aboriginal Language Map attempts to represent all of the language or tribal or nation groups of Indigenous people of Australia. This map is based on language data gathered by Aboriginal Studies Press, AIATSIS and Auslig/Sinclair, Knight, Merz, (1996).</p>
+	        		</div>
+	        	    </div>
+	        </div>
+	        
+ 
+
+
+<!-- 2 same kind of picture has been used for zoomin and zoomout by resizing it -->
+                 <div>
+                    <div class="border-box" id="outcomes-col-2">
+        			<span style="width: 250px; height: 2%; display: inline-block; vertical-align: middle;"></span> 
+        		<img id="image1" src="{% static 'images/small.png' %}" data-zoom-image="{% static 'images/big.png' %}"/>
+        			
+        		    </div>
+	     
+
+
+
+
+<!-- Script for elevateZoom.js -->
+	          <script>
+              $('#image1').elevateZoom({
+			      zoomType				: "lens",
+			      lensShape : "round",
+			      lensSize    : 300
+			       });
+               </script>
+
+
+        		
+                  </div>
+            </div>
+        </main>
+	
+  </body>
+
+</html>

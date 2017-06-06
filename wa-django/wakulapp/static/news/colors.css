@@ -1,0 +1,28 @@
+body,
+.endless_loading
+{
+  background-color: #fefcfa;
+}
+
+nav
+{
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+nav ul li a
+{
+  color: #888;
+}
+nav ul li a:hover,
+nav ul li a:active
+{
+  color: #e07000;
+}
+.news nav ul li#news a,
+.directory nav ul li#directory a,
+.training nav ul li#training a,
+.about nav ul li#about a
+{
+  color: #e07000 !important;
+}

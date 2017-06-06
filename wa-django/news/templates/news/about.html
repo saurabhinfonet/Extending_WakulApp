@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>Wakul</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% load static %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'news/wakul.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'news/layout.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/colors.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'news/misc.css' %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static 'news/print.css' %}" />
+
+</head>
+<body class="{{ body_tags }}">
+
+{% include "news/navigation.html" %}
+
+    <main>
+        <div class="section clearfix" id="description">
+        	<div class="fluid">
+        		<h1>An interactive app for Indigenous news</h1>
+        		<div class="col-1 border-box">
+        			<p>Indigenous Australians are creating, accessing and distributing news content like never before. Indigenous and mainstream print and broadcast channels are being challenged and held to account by Aboriginal and Torres Strait Islanders producing our own stories for our own people. Wakul App gathers the stories from traditional and new media Indigenous news sources and centralises them in one place, connecting diverse communities through the new technology they are using.</p>
+        		</div>
+        		<div class="col-2 border-box round-borders">
+        			<p><strong>Wakul gagil ngarraldiyn</strong> means "coming together through knowing" in Gathang; the language of the
+        Birpai people.<br><br><strong>Wakul gagil ngarraldiyn</strong> speaks to the power of knowledge in bringing people together.</p>
+        		</div>
+        	</div>
+        </div>
+
+        <div class="section clearfix alt" id="outcomes">
+        	<div class="fluid">
+        		<h1>What we're creating</h1>
+
+        		<div class="border-box" id="outcomes-col-2">
+        			<span style="width: 0px; height: 100%; display: inline-block; vertical-align: middle;"></span>
+        			<img src="https://www.wakul.com.au/images/wakul_outcomes.png" title="Wakul App database and iOS app" alt="Wakul App database and iOS app">
+        		</div>
+        		<div class="border-box" id="outcomes-col-1">
+        			<ul>
+        				<li>Database with over 200 Indigenous news sources</li>
+        				<li>Archives Open Graph data for news content</li>
+        				<li>Archives Indigenous Twitter</li>
+        				<li>Public ReSTful API</li>
+        			</ul>
+        		</div>
+        		<div class="border-box" id="outcomes-col-3">
+        			<ul>
+        				<li>Apps for Web, iOS and Android</li>
+        				<li>Interactive map of First Nations that shows local news and social media networks as you navigate</li>
+        				<li>Trending topics</li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+
+        <div class="section clearfix" id="members">
+        	<div class="fluid">
+        		<h1>The team</h1>
+        		<div class="center">
+        			<a href="http://caj.unimelb.edu.au/" target="_blank" title="Centre for Advancing Journalism | The University of Melbourne"><img class="logo fade" id="caj" src="https://www.wakul.com.au/images/caj-logo.png" alt="Centre for Advancing Journalism | The University of Melbourne"></a>
+              <a href="http://eresearch.unimelb.edu.au/" target="_blank" title="eResearch | The University of Melbourne"><img class="logo fade" id="eresearch" src="https://www.wakul.com.au/images/eresearch-logo.png" alt="eResearch | The University of Melbourne"></a>
+        		</div>
+        		<div class="center hidden">
+        			Supported by:
+        			<br><a href="http://indigenousx.com.au/" target="_blank" title="IndigenousX"><img class="logo fade round-borders" id="indigx" src="https://www.wakul.com.au/images/indigx-logo.png" alt="IndigenousX"></a>
+        			<a href="http://www.theguardian.com/au" target="_blank" title="The Guardian Australia"><img class="logo fade" id="guardian" src="https://www.wakul.com.au/images/guardian-logo.png" alt="The Guardian Australia"></a>
+        			<a href="http://virtualsonglines.com.au/" target="_blank" title="Virtual Songlines"><img class="logo fade" id="virtualsonglines" src="https://www.wakul.com.au/images/virtualsonglines-logo.png" alt="Virtual Songlines"></a>
+        		</div>
+        		<div class="center">
+        			Funded by a grant from the Indigenous Research Initiative.
+        		</div>
+        	</div>
+        </div>
+    </main>
+
+</body>
+</html>

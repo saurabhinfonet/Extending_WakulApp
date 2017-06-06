@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Wakul</title>
+    {% include "news/head.html" %}
+
+    {% if category is not None %}<link rel="alternate" type="application/rss+xml" title="" href="{% url 'rss' category=category slug='rss' %}" />{% endif %}
+
+</head>
+<body class="{{ body_tags }}">
+
+{% include "news/navigation.html" %}
+
+    <main>
+        <div class="responsive">
+            {% include "news/left_aside.html" %}
+
+            <div class="articles-container">
+                {% if tweet_topic is not None %}
+                <div class="twitter-topic-stats">
+                    <div class="topic-name">'{{ tweet_topic.name }}'</div>
+                    <div class="topic-wrapper">
+                        <span class="tweets-positive">{{ tweet_topic.sentiment_positive|floatformat:1 }}% positive</span>
+                        <span class="tweets-count">{{ tweet_topic.count }} tweets</span>
+                        <span class="tweets-negative">{{ tweet_topic.sentiment_negative|floatformat:1 }}% negative</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% if q is not None %}
+                <h2 id="search-results">Search Results for '{{ q }}'</h2>
+                {% endif %}
+                {% if entries is not None %}
+                {% include page_template %}
+                {% block js %}
+                    {# block.super #}
+                    <script src="http://code.jquery.com/jquery-latest.js"></script>
+                    {% load static %}
+                    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+                    <script>
+                        $(document).ready(function() {
+                            $.endlessPaginate({
+                              paginateOnScroll: true,
+                              paginateOnScrollMargin: 1,
+                              paginateOnScrollChunkSize: 1
+                            });
+                        });
+                    </script>
+                {% endblock %}
+                {% endif %}
+            </div>
+
+            {% include "news/right_aside.html" %}
+        </div>
+    </main>
+
+</body>
+</html>

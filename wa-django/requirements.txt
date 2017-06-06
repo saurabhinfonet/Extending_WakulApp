@@ -1,0 +1,5 @@
+Django==1.10.2
+psycopg2==2.6.2
+django-el-pagination==3.0.1
+PyYAML==3.10
+CouchDB==1.1

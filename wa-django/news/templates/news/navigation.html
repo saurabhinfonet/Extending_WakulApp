@@ -1,0 +1,13 @@
+    {% with "http://beta.wakul.com.au/" as base_url %}<nav>
+        <div class="responsive flex">
+            <a href="{{ base_url }}"><img src="https://www.wakul.com.au/images/wakul.ico" class="wakul-icon fade"></a>
+            <ul>
+                <li id="news"><a href="{% url 'front_page' %}">News</a></li>
+                <li id="directory"><a href="{% url 'directory' %}">Directory</a></li>
+                <li id="about"><a href="{% url 'about' %}">About</a></li>
+            </ul>
+            {% load static %}<a href="https://www.facebook.com/wakulapp" target="_blank"><img src="{% static 'news/wakul_facebook.svg' %}" class="social-icon fade"></a>
+            <a href="https://twitter.com/WakulApp" target="_blank"><img src="{% static 'news/wakul_twitter.svg' %}" class="social-icon fade"></a>
+            <a href="https://www.instagram.com/wakulapp/" target="_blank"><img src="{% static 'news/wakul_instagram.svg' %}" class="social-icon fade"></a>
+        </div>
+    </nav>{% endwith %}

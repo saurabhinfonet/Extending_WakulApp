@@ -1,0 +1,17 @@
+{% load el_pagination_tags %}
+{% load static %}
+
+{% lazy_paginate entries %}
+{% for entry in entries %}
+                <div class="article">
+                    {% if entry.image and entry.image is not '' %}<a href={{ entry.url }}><div class="image" style="background-image: url('{{ entry.image }}');"></div></a>{% endif %}
+                    <div class="text_wrapper">
+                        {% if entry.title is not '' %}<div class="title"><a href={{ entry.url }}>{{ entry.title }}</a></div>{% endif %}
+                        <div class="pubdate"><span>{{ entry.pub_date|date:"l j F, Y" }}</span> at {{ entry.pub_date|date:"fA" }}</div>
+                        {% if entry.site_name is not '' %}<div class="author">{{ entry.site_name }}</div>{% endif %}
+                        {% if entry.description is not '' %}<div class="description">{{ entry.description }}</div>{% endif %}
+                        {% if entry.shares_twitter is not 0 %}<div class="shares_twitter"><img src="{% static 'news/twitter-icon.svg' %}"><span>{{ entry.shares_twitter }}</span></div>{% endif %}
+                    </div>
+                </div>
+{% endfor %}
+{% show_more %}

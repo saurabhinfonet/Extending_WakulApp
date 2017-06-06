@@ -1,0 +1,136 @@
+<!-- Author: Elyas  -->
+<!-- Addtional changes made by: Saurabh Sharma  -->
+<!-- This contributes with Directory page feature -->
+{% load static %}
+<html>
+<head>
+    <title>Wakul</title>
+    {% include "news/head.html" %}
+
+    <style>
+
+    </style>
+
+</head>
+<body class="{{ body_tags }}">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+{% include "news/navigation.html" %}
+
+
+
+
+    <main>
+        <div class="responsive">
+            <aside class="left-aside border-box">
+                <div class="aside-section">
+                    <h2>Outlets</h2>
+                    <ul>
+                        {% for o in outlets %}
+                        <li><a href="{% url 'outlet' outlet=o.outlet %}" class="border-box{% ifequal outlet o.outlet %} current-page{% endifequal %}">{{ o.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+
+
+
+
+<!-- Get information from  outlet details to add decription and type of Outlet -->
+            <div class="articles-container">
+
+                <h2>{{ entry.name }}</h2>
+                <div class="outlet-module outlet-details">
+                 <div style="font-size: 14px;">
+                    {% if entry.class_type != '' %}<br/>
+                      <p style="color: orangered;">  Type : </p>{{ entry.class_type }}
+                    {% endif %}
+
+                    {% if entry.description != '' %}<br/>
+                        <p style="color: orangered;">   Description :</p> {{ entry.description }}
+                    {% endif %}
+
+                </div>
+                </div>
+
+
+
+
+<!-- Gets the facebook url from outlet-facebook if it is available -->
+                <div class="outlet-module outlet-map"></div>
+                <h2>Facebook Feed</h2>
+                {% if entry.facebook_url != '' %}
+                    
+                    <div class="outlet-module outlet-facebook">
+                    
+                    <div class="fb-page" data-href="{{ entry.facebook_url }}" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+
+                        <blockquote cite="{{ entry.facebook_url }}" class="fb-xfbml-parse-ignore">
+                            <a href="{{ entry.facebook_url }}"></a>
+                        </blockquote>
+                    </div>
+
+                </div>{% endif %}
+
+
+
+
+<!-- Checks if the tweet available in outlet-twitter and show it in the page for particular outlet -->
+                <div class="outlet-module outlet-twitter">
+                    <h2>Tweets </h2>
+                    {% for tweet in tweets %}
+
+                                    <div class="tweet"> 
+                                      
+                                        <a href="{{ tweet.url_user }}" class="user_img fade"><img src="{{ tweet.user_img }}"></a>
+                                        <div class="wrapper">
+                                            <div class="user">
+                                                <a href="{{ tweet.url_user }}" class="user_name">{{ tweet.user_name }}</a> <a href="{{ tweet.url_user }}" class="screen_name">@{{ tweet.screen_name }}</a> &middot; <a href="{{ tweet.url }}" class="pubdate">{{ tweet.pub_date|date:"M j" }}</a>
+                                            </div>
+                                            <div class="text">
+                                                <a href="{{ tweet.url }}">{{ tweet.text }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+
+<!-- Check if the articles available in outlet-news and show it in the page for particular outlet-->
+                <div class="outlet-module outlet-news">
+                    <h2>Articles </h2>
+                    {% for news in news_feed %}
+                    <div class="tweet">
+                       
+                        {% if news.image and news.image is not '' %}<a href={{ news.url }}><div class="image" style="background-image: url('{{ news.image }}');"></div></a>{% endif %}
+                        <div class="text_wrapper">
+                            {% if news.title is not '' %}<div class="title"><a href={{ news.url }}>{{ news.title }}</a></div>{% endif %}
+                            <div class="pubdate"><span>{{ news.pub_date|date:"l j F, Y" }}</span> at {{ news.pub_date|date:"fA" }}</div>
+                            {% if news.site_name is not '' %}<div class="author">{{ news.site_name }}</div>{% endif %}
+                            {% if news.description is not '' %}<div class="description">{{ news.description }}</div>{% endif %}
+                            {% if news.shares_twitter is not 0 %}<div class="shares_twitter"><img src="{% static 'news/twitter-icon.svg' %}"><span>{{ news.shares_twitter }}</span></div>{% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
+
+
+
+                
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

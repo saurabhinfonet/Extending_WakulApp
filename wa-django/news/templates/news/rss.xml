@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xml:base="{{ request.get_full_path }}" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:schema="http://schema.org/" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Wakul App</title>
+    <link>{{ request.get_full_path }}</link>
+    <description></description>
+    <language>en</language>
+    {% for entry in entries|slice:":10" %}
+    <item>
+      <title>{{ entry.title }}</title>
+      <link>{{ entry.url|urlencode }}</link>
+      <description>{{ entry.description }}</description>
+      <pubDate>{{ entry.pub_date|date:"r" }}</pubDate>
+      <dc:creator>{{ entry.author }}</dc:creator>
+      <guid isPermaLink="false"></guid>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
