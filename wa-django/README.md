@@ -1,5 +1,5 @@
 
-Changes made mostly in importer.py,directory.html,map.html,left_aside.html, views.py,url.py.. Added sentimental_analysis.html, first_nation.html, map2.html
+Changes made mostly in importer.py,directory.html,map.html,left_aside.html, views.py,url.py.. Added sentimental_analysis.html, first_nation.html, map2.html.
 In importer.py there is an addition to import the data for stating type and description of outlet , articles urls, and uncommenting outlet data import.
 
 
